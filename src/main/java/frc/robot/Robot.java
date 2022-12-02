@@ -1,7 +1,7 @@
 // Copyright (c) FIRST and other WPILib contributors.
 // Open Source Software; you can modify and/or share it under the terms of
 // the WPILib BSD license file in the root directory of this project.
-// the copy of bens. this is 2
+
 package frc.robot;
 
 import edu.wpi.first.wpilibj.TimedRobot;
@@ -34,8 +34,8 @@ public class Robot extends TimedRobot {
       
   @Override
   public void robotInit() {
-    PWMVictorSPX left = new PWMVictorSPX(0);
-    PWMVictorSPX right = new PWMVictorSPX(1);
+    PWMVictorSPX left = new PWMVictorSPX(1);
+    PWMVictorSPX right = new PWMVictorSPX(0);
     right.setInverted(true);
     m_myRobot = new DifferentialDrive(left, right);
   }
@@ -52,7 +52,7 @@ public void teleopPeriodic() {
     //double differential = Math.abs(stick.getX() / 4);
     c.enableDigital();
     //drive.arcadeDrive(stick);
-    m_myRobot.arcadeDrive(controller.getLeftY()*0.75, controller.getRightX()*-0.75);
+    m_myRobot.arcadeDrive(controller.getRightY()*-0.75, controller.getRightX()*-0.75);
     //if (buttonR == true){fff
         //m_myRobot.arcadeDrive(stick.getRawAxis(1)*-0.75, stick.getX()*-1);
 
