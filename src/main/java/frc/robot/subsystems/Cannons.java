@@ -64,7 +64,9 @@ private Solenoid cannons[];
     // here. Call these from Commands.
 
     public void fireCannon(int i) {
-        cannons[i].startPulse();
+        if(i >=0 && i < NUM_CANNONS) {
+            cannons[i].startPulse();
+        }
     }
 }
 
