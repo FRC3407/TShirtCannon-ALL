@@ -6,20 +6,22 @@ import java.util.function.DoubleSupplier;
 
 import frc.robot.subsystems.SubsystemCannons;
 
-public class FireCannons extends CommandBase {
+public class FireHorn extends CommandBase {
 
     private final SubsystemCannons m_subsystemCannons;
-    private int m_S;
-
-    public FireCannons(int S, SubsystemCannons subsystem) {
-        m_S = S;
+    private int m_time;
+    private boolean m_run;
+    public FireHorn(int time, SubsystemCannons subsystem, boolean run) {
+        m_run = run;
+        m_time = time;
         m_subsystemCannons = subsystem;
         addRequirements(m_subsystemCannons);
     }
 
     @Override
     public void initialize() {
-        m_subsystemCannons.fireCannons(m_S, m_subsystemCannons);
+        withTimeout(m_time);
+        if(m_run){m_subsystemCannons.fireHorn(m_time);};
     }
 
     @Override

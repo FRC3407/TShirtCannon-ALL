@@ -9,6 +9,7 @@ import edu.wpi.first.wpilibj2.command.Command.InterruptionBehavior;
 
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
+import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.subsystems.*;
@@ -27,10 +28,10 @@ public class RobotContainer {
   private RobotContainer() {
 
     SmartDashboard.putData("Autonomous Command", new AutonomousCommand());
-    SmartDashboard.putData("Solenoid 0", new FireCannons(0, m_subsystemCannons));
-    SmartDashboard.putData("Solenoid 1", new FireCannons(1, m_subsystemCannons));
-    SmartDashboard.putData("Solenoid 2", new FireCannons(2, m_subsystemCannons));
-    SmartDashboard.putData("Solenoid 3", new FireCannons(3, m_subsystemCannons));
+    SmartDashboard.putData("Solenoid 0", new FireHorn(0, m_subsystemCannons,true));
+    SmartDashboard.putData("Solenoid 1", new FireHorn(1, m_subsystemCannons,true));
+    SmartDashboard.putData("Solenoid 2", new FireHorn(2, m_subsystemCannons,true));
+    SmartDashboard.putData("Solenoid 3", new FireHorn(3, m_subsystemCannons,true));
     
 
     configureButtonBindings();
@@ -46,18 +47,37 @@ public class RobotContainer {
     return m_robotContainer;
   }
 
+  SequentialCommandGroup createCommandGroup(int[] pattern)
+  {
+    SequentialCommandGroup sequentialCommandGroup = new SequentialCommandGroup();
+    for (int index = 0; index < pattern.length; index++) {
+      if(index%2!=0){sequentialCommandGroup.addCommands(new FireHorn(pattern[index], m_subsystemCannons,false));}
+      if(index%2==0){sequentialCommandGroup.addCommands(new FireHorn(pattern[index], m_subsystemCannons,true));}
+    }
+    return sequentialCommandGroup;
+  }
+
+  private final int[] patternAInit= new int[]{1,1,1,1,1};
+  private final SequentialCommandGroup patternA = createCommandGroup(patternAInit);
+  private final int[] patternBInit= new int[]{1,1,1,1,1};
+  private final SequentialCommandGroup patternB = createCommandGroup(patternBInit);
+  private final int[] patternXInit= new int[]{1,1,1,1,1};
+  private final SequentialCommandGroup patternX = createCommandGroup(patternXInit);
+  private final int[] patternYInit= new int[]{1,1,1,1,1};
+  private final SequentialCommandGroup patternY = createCommandGroup(patternYInit);
+
   private void configureButtonBindings() {
-    final JoystickButton xboxButtonX = new JoystickButton(xboxController, XboxController.Button.kA.value);
-    xboxButtonX.onTrue(new FireCannons(3, m_subsystemCannons).withInterruptBehavior(InterruptionBehavior.kCancelSelf));
+    final JoystickButton xboxButtonX = new JoystickButton(xboxController, XboxController.Button.kX.value);
+    xboxButtonX.onTrue(patternX.andThen(new FireCannons(3, m_subsystemCannons).withInterruptBehavior(InterruptionBehavior.kCancelSelf)));
 
     final JoystickButton xboxButtonA = new JoystickButton(xboxController, XboxController.Button.kA.value);
-    xboxButtonA.onTrue(new FireCannons(2, m_subsystemCannons).withInterruptBehavior(InterruptionBehavior.kCancelSelf));
+    xboxButtonA.onTrue(patternA.andThen(new FireCannons(2, m_subsystemCannons).withInterruptBehavior(InterruptionBehavior.kCancelSelf)));
 
     final JoystickButton xboxButtonB = new JoystickButton(xboxController, XboxController.Button.kB.value);
-    xboxButtonB.onTrue(new FireCannons(1, m_subsystemCannons).withInterruptBehavior(InterruptionBehavior.kCancelSelf));
+    xboxButtonB.onTrue(patternB.andThen(new FireCannons(1, m_subsystemCannons).withInterruptBehavior(InterruptionBehavior.kCancelSelf)));
 
     final JoystickButton xboxButtonY = new JoystickButton(xboxController, XboxController.Button.kY.value);
-    xboxButtonY.onTrue(new FireCannons(0, m_subsystemCannons).withInterruptBehavior(InterruptionBehavior.kCancelSelf));
+    xboxButtonY.onTrue(patternY.andThen(new FireCannons(0, m_subsystemCannons).withInterruptBehavior(InterruptionBehavior.kCancelSelf)));
   }
 
   public XboxController getXboxController() {
