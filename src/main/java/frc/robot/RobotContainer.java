@@ -65,7 +65,6 @@ public class RobotContainer {
   private final SequentialCommandGroup patternX = createCommandGroup(patternXInit);
   private final int[] patternYInit= new int[]{1,1,1,1,1};
   private final SequentialCommandGroup patternY = createCommandGroup(patternYInit);
-
   private void configureButtonBindings() {
     final JoystickButton xboxButtonX = new JoystickButton(xboxController, XboxController.Button.kX.value);
     xboxButtonX.onTrue(patternX.andThen(new FireCannons(3, m_subsystemCannons).withInterruptBehavior(InterruptionBehavior.kCancelSelf)));

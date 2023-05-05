@@ -1,6 +1,7 @@
 
 package frc.robot.subsystems;
 
+import frc.robot.Constants;
 import frc.robot.RobotContainer;
 import frc.robot.commands.*;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
@@ -24,30 +25,29 @@ public class SubsystemCannons extends SubsystemBase {
     private Solenoid solenoidA;
     private Solenoid solenoidX;
     private Solenoid solenoidHorn;
-    private SubsystemCannons m_subsystemCannons;
 
     public SubsystemCannons() {
         airCompressor = new Compressor(0, PneumaticsModuleType.CTREPCM);
         addChild("Air Compressor", airCompressor);
 
-        solenoidY = new Solenoid(0, PneumaticsModuleType.CTREPCM, 0);
+        solenoidY = new Solenoid(0, PneumaticsModuleType.CTREPCM, Constants.PWMChannel.cannonY);
         addChild("Solenoid Y", solenoidY);
         solenoidY.setPulseDuration(.2);
 
-        solenoidB = new Solenoid(0, PneumaticsModuleType.CTREPCM, 1);
+        solenoidB = new Solenoid(0, PneumaticsModuleType.CTREPCM, Constants.PWMChannel.cannonB);
         addChild("Solenoid B", solenoidB);
         solenoidB.setPulseDuration(.2);
 
-        solenoidA = new Solenoid(0, PneumaticsModuleType.CTREPCM, 2);
+        solenoidA = new Solenoid(0, PneumaticsModuleType.CTREPCM, Constants.PWMChannel.cannonA);
         addChild("Solenoid A", solenoidA);
         solenoidA.setPulseDuration(.2);
 
-        solenoidX = new Solenoid(0, PneumaticsModuleType.CTREPCM, 3);
+        solenoidX = new Solenoid(0, PneumaticsModuleType.CTREPCM, Constants.PWMChannel.cannonX);
         addChild("Solenoid X", solenoidX);
         solenoidX.setPulseDuration(.2);
 
-        solenoidHorn = new Solenoid(0, PneumaticsModuleType.CTREPCM, 4);
-        addChild("Solenoid X", solenoidX);
+        solenoidHorn = new Solenoid(0, PneumaticsModuleType.CTREPCM, Constants.PWMChannel.horn);
+        addChild("Horn", solenoidHorn);
         solenoidHorn.setPulseDuration(.2);
 
     }
