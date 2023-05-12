@@ -79,7 +79,7 @@ public class SubsystemCannons extends SubsystemBase {
         }
     }
 
-    public void fireHorn(int pulseTime)
+    public void fireHorn(double pulseTime)
     {
         solenoidHorn.setPulseDuration(pulseTime);
         solenoidHorn.startPulse();

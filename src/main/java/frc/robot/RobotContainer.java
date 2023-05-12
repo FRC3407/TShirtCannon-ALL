@@ -47,23 +47,25 @@ public class RobotContainer {
     return m_robotContainer;
   }
 
-  SequentialCommandGroup createCommandGroup(int[] pattern)
+  SequentialCommandGroup createCommandGroup(double[] pattern)
   {
     SequentialCommandGroup sequentialCommandGroup = new SequentialCommandGroup();
     for (int index = 0; index < pattern.length; index++) {
-      if(index%2!=0){sequentialCommandGroup.addCommands(new FireHorn(pattern[index], m_subsystemCannons,false));}
-      if(index%2==0){sequentialCommandGroup.addCommands(new FireHorn(pattern[index], m_subsystemCannons,true));}
+      if(index%2!=0)
+        {sequentialCommandGroup.addCommands(new FireHorn(pattern[index], m_subsystemCannons,false));}
+      if(index%2==0)
+        {sequentialCommandGroup.addCommands(new FireHorn(pattern[index], m_subsystemCannons,true));}
     }
     return sequentialCommandGroup;
   }
 
-  private final int[] patternAInit= new int[]{1,1,1,1,1};
+  private final double[] patternAInit= new double[]{.1,.3,.2,.3,2};
   private final SequentialCommandGroup patternA = createCommandGroup(patternAInit);
-  private final int[] patternBInit= new int[]{1,1,1,1,1};
+  private final double[] patternBInit= new double[]{.1,.1,.1,.2,.1,.1,.2,.1,.2};
   private final SequentialCommandGroup patternB = createCommandGroup(patternBInit);
-  private final int[] patternXInit= new int[]{1,1,1,1,1};
+  private final double[] patternXInit= new double[]{1,1,1,1,1};
   private final SequentialCommandGroup patternX = createCommandGroup(patternXInit);
-  private final int[] patternYInit= new int[]{1,1,1,1,1};
+  private final double[] patternYInit= new double[]{1,1,1,1,1};
   private final SequentialCommandGroup patternY = createCommandGroup(patternYInit);
   private void configureButtonBindings() {
     final JoystickButton xboxButtonX = new JoystickButton(xboxController, XboxController.Button.kX.value);
