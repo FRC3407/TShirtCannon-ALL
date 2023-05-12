@@ -2,7 +2,8 @@
 package frc.robot;
 
 public class Constants {
-    //PWM IDs
+    /** PWM IDs
+     */
     public static final class PWMChannel {
         public final static int cannonY = 0;
         public final static int cannonB = 1;
