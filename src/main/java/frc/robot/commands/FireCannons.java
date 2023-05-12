@@ -9,17 +9,21 @@ import frc.robot.subsystems.SubsystemCannons;
 public class FireCannons extends CommandBase {
 
     private final SubsystemCannons m_subsystemCannons;
-    private int m_S;
+    private int cannonNum;
 
-    public FireCannons(int S, SubsystemCannons subsystem) {
-        m_S = S;
+    /**
+     * @param cannonNum The cannon to be fired
+     * @param subsystem The cannons subsystem utilized
+     */
+    public FireCannons(int cannonNum, SubsystemCannons subsystem) {
+        this.cannonNum = cannonNum;
         m_subsystemCannons = subsystem;
         addRequirements(m_subsystemCannons);
     }
 
     @Override
     public void initialize() {
-        m_subsystemCannons.fireCannons(m_S, m_subsystemCannons);
+        m_subsystemCannons.fireCannons(cannonNum, m_subsystemCannons);
     }
 
     @Override

@@ -13,6 +13,11 @@ public class FireHorn extends CommandBase {
     private double m_time;
     private boolean m_run;
     private Timer timer = new Timer();
+    /** Creates a new FireHorn command
+     * @param time The time the horn is run or slept
+     * @param subsystem The cannons subsystem utilized
+     * @param run True: the horn is run for the time, False: the horn is slept for the time
+     */
     public FireHorn(double time, SubsystemCannons subsystem, boolean run) {
         m_run = run;
         m_time = time;

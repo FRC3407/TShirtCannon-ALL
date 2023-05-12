@@ -61,7 +61,10 @@ public class SubsystemCannons extends SubsystemBase {
     public void simulationPeriodic() {
 
     }
-
+    /** Fires the solenoid cannons
+     * @param numCannon The cannon that should be fired, 0->Y, 1->B, 2->A, 3->X
+     * @param m_subsystemCannons The cannons subsystem utilized
+     */
     public void fireCannons(int numCannon, SubsystemCannons m_subsystemCannons) {
         switch (numCannon) {
             case 0:
@@ -79,6 +82,9 @@ public class SubsystemCannons extends SubsystemBase {
         }
     }
 
+    /** Fires the horn
+     * @param pulseTime The time in seconds the horn is fired
+     */
     public void fireHorn(double pulseTime)
     {
         solenoidHorn.setPulseDuration(pulseTime);
