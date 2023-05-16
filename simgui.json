@@ -1,0 +1,15 @@
+{
+  "NTProvider": {
+    "types": {
+      "/FMSInfo": "FMSInfo",
+      "/LiveWindow/DriveTrain/Differential Drive 1": "DifferentialDrive",
+      "/LiveWindow/Ungrouped/Scheduler": "Scheduler",
+      "/SmartDashboard/Auto Mode": "String Chooser",
+      "/SmartDashboard/Autonomous Command": "Command",
+      "/SmartDashboard/Solenoid 0": "Command",
+      "/SmartDashboard/Solenoid 1": "Command",
+      "/SmartDashboard/Solenoid 2": "Command",
+      "/SmartDashboard/Solenoid 3": "Command"
+    }
+  }
+}
