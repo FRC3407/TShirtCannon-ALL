@@ -18,7 +18,7 @@ public class DriveTrain extends SubsystemBase {
     public DriveTrain() {
         motorControllerleft = new PWMVictorSPX(1);
         addChild("Motor Controller left", motorControllerleft);
-        motorControllerleft.setInverted(true);
+        motorControllerleft.setInverted(false);
 
         motorControllerright = new PWMVictorSPX(0);
         addChild("Motor Controller right", motorControllerright);
