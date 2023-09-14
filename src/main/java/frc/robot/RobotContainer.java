@@ -69,16 +69,24 @@ public class RobotContainer {
   private final SequentialCommandGroup patternY = createCommandGroup(patternYInit);
   private void configureButtonBindings() {
     final JoystickButton xboxButtonX = new JoystickButton(xboxController, XboxController.Button.kX.value);
-    xboxButtonX.onTrue(patternX.andThen(new FireCannons(3, m_subsystemCannons).withInterruptBehavior(InterruptionBehavior.kCancelSelf)));
+    xboxButtonX.onTrue(new FireCannons(3, m_subsystemCannons).withInterruptBehavior(InterruptionBehavior.kCancelSelf));
+    //xboxButtonX.onTrue(patternX.andThen(new FireCannons(3, m_subsystemCannons).withInterruptBehavior(InterruptionBehavior.kCancelSelf)));
 
     final JoystickButton xboxButtonA = new JoystickButton(xboxController, XboxController.Button.kA.value);
-    xboxButtonA.onTrue(patternA.andThen(new FireCannons(2, m_subsystemCannons).withInterruptBehavior(InterruptionBehavior.kCancelSelf)));
+    xboxButtonA.onTrue(new FireCannons(2, m_subsystemCannons).withInterruptBehavior(InterruptionBehavior.kCancelSelf));
+    //xboxButtonA.onTrue(patternA.andThen(new FireCannons(2, m_subsystemCannons).withInterruptBehavior(InterruptionBehavior.kCancelSelf)));
 
     final JoystickButton xboxButtonB = new JoystickButton(xboxController, XboxController.Button.kB.value);
-    xboxButtonB.onTrue(patternB.andThen(new FireCannons(1, m_subsystemCannons).withInterruptBehavior(InterruptionBehavior.kCancelSelf)));
+    xboxButtonB.onTrue(new FireCannons(1, m_subsystemCannons).withInterruptBehavior(InterruptionBehavior.kCancelSelf));
+    //xboxButtonB.onTrue(patternB.andThen(new FireCannons(1, m_subsystemCannons).withInterruptBehavior(InterruptionBehavior.kCancelSelf)));
 
     final JoystickButton xboxButtonY = new JoystickButton(xboxController, XboxController.Button.kY.value);
-    xboxButtonY.onTrue(patternY.andThen(new FireCannons(0, m_subsystemCannons).withInterruptBehavior(InterruptionBehavior.kCancelSelf)));
+    xboxButtonY.onTrue(new FireCannons(0, m_subsystemCannons).withInterruptBehavior(InterruptionBehavior.kCancelSelf));
+    //xboxButtonY.onTrue(patternY.andThen(new FireCannons(0, m_subsystemCannons).withInterruptBehavior(InterruptionBehavior.kCancelSelf)));
+    
+    final JoystickButton xboxButtonLB = new JoystickButton(xboxController, XboxController.Button.kLeftBumper.value);
+    xboxButtonLB.onTrue(new FireHorn(0.5, m_subsystemCannons, true));
+    
   }
 
   public XboxController getXboxController() {
