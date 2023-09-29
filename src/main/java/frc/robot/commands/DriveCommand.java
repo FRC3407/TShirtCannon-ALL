@@ -28,7 +28,7 @@ public class DriveCommand extends CommandBase {
         XboxController controller = RobotContainer.getInstance().getXboxController();
         double speed = controller.getRightX();
         double rotation = controller.getRightY();
-        m_driveTrain.arcadeDrive(speed, rotation);
+        m_driveTrain.arcadeDrive(speed, -rotation);
     }
 
     @Override
