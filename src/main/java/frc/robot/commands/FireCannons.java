@@ -1,12 +1,12 @@
 
 package frc.robot.commands;
 
-import edu.wpi.first.wpilibj2.command.CommandBase;
+import edu.wpi.first.wpilibj2.command.Command;
 import java.util.function.DoubleSupplier;
 
 import frc.robot.subsystems.SubsystemCannons;
 
-public class FireCannons extends CommandBase {
+public class FireCannons extends Command {
 
     private final SubsystemCannons m_subsystemCannons;
     private int cannonNum;

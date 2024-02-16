@@ -2,13 +2,13 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.XboxController;
-import edu.wpi.first.wpilibj2.command.CommandBase;
+import edu.wpi.first.wpilibj2.command.Command;
 import java.util.function.DoubleSupplier;
 
 import frc.robot.RobotContainer;
 import frc.robot.subsystems.DriveTrain;
 
-public class DriveCommand extends CommandBase {
+public class DriveCommand extends Command {
 
     private final DriveTrain m_driveTrain;
 
@@ -28,7 +28,7 @@ public class DriveCommand extends CommandBase {
         XboxController controller = RobotContainer.getInstance().getXboxController();
         double speed = controller.getRightX();
         double rotation = controller.getRightY();
-        m_driveTrain.arcadeDrive(speed, -rotation);
+        m_driveTrain.arcadeDrive(-speed, -rotation);
     }
 
     @Override
