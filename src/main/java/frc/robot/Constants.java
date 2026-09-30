@@ -11,4 +11,7 @@ public class Constants {
         public final static int cannonX = 3;
         public final static int horn = 7;
     }
+    public static final class DriveConstants{
+        public final static double speedMult = 0.5;
+    }
 }
